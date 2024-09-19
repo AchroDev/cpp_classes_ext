@@ -40,8 +40,10 @@ public:
 
 int main()
 {
-    Log log;                           // Initiating the log
-    log.SetLevel(log.LogLevelWarning); // Setting a warning level for the log messages
-    log.Warn("AHHH!");                 // Example/Test warning message
-    std::cin.get();                    // Waits for the return key before exiting
+    Log log;                             // Initiating the log
+    log.SetLevel(log.LogLevelWarning);   // Setting a warning level for the log messages
+    log.Warn("A Warning!!");             // Example/Test warning message
+    log.Error("An Error!!!");            // Example error message
+    log.Info("Just some information.."); // Example info message
+    std::cin.get();                      // Waits for the return key before exiting
 }
