@@ -1,14 +1,12 @@
 #include <iostream>
-#define namespace using std
 
-
-class Log()
+class Log
 {
     // separating the variables and methods helps keep the code clean in a class
 public:
-    const int LogLevelError = 0; // first level
+    const int LogLevelError = 0;   // first level
     const int LogLevelWarning = 1; // second level
-    const int LogLevelInfo = 2; // third level
+    const int LogLevelInfo = 2;    // third level
 
     // private member variable to maintain the log level only accessible to the class
 private:
@@ -21,26 +19,29 @@ public:
         m_LogLevel = level; // sets the member variable with the 'level' int parameter
     }
 
-    void Warn(const char* message)
+    void Warn(const char *message)
     {
-        cout << "[WARNING]: " << message << endl; // defining how the warning message should be displayed
+        if (m_LogLevel >= LogLevelWarning)
+            std::cout << "[WARNING]: " << message << std::endl; // defining how the warning message should be displayed
     }
 
-    void Error(const char* message)
+    void Error(const char *message)
     {
-        cout << "[ERROR]: " << message << endl; // defining how the error message should be displayed
+        if (m_LogLevel >= LogLevelError)
+            std::cout << "[ERROR]: " << message << std::endl; // defining how the error message should be displayed
     }
 
-    void Info(const char* message)
+    void Info(const char *message)
     {
-        cout << "[INFO]: " << message << endl; // defining how the information message should be displayed
+        if (m_LogLevel >= LogLevelInfo)
+            std::cout << "[INFO]: " << message << std::endl; // defining how the information message should be displayed
     }
-
 };
 
-int main(){
-    Log log; // Initiating the log
-    log.SetLevel(LogLevelWarning); // Setting a warning level for the log messages
-    log.Warn("AHHH!"); // Example/Test warning message
-    cin.get(); // dropped the std:: by defining the use of the std namespace at the head of the file.
+int main()
+{
+    Log log;                           // Initiating the log
+    log.SetLevel(log.LogLevelWarning); // Setting a warning level for the log messages
+    log.Warn("AHHH!");                 // Example/Test warning message
+    std::cin.get();                    // Waits for the return key before exiting
 }
